@@ -29,6 +29,33 @@ education["dates"] = "2012-2016";
 education["location"] = "My school location";
 education["major"] = "My school major";
 
+var educationJSON = {
+	schools: [
+		{
+			"name":"school1",
+			"degree":"degree1",
+			"dates":"2000-2010",
+			"location":"location1",
+			"major":"major1",
+		},	
+		{
+			"name":"school2",
+			"degree":"degree2",
+			"dates":"2011-2014",
+			"location":"location2",
+			"major":"major2",
+		}
+	],
+	onlineCourses: [
+		{
+			"title": "Online course title",
+			"school": "Online course school",
+			"dates": "Online course dates",
+			"url": "Online course url"
+		}
+	]
+}
+
 $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 $("#topContacts").append(HTMLcontactGeneric.replace("%contact%", "Generic data").replace("%data%", bio.contantInfo.generic));
@@ -51,8 +78,19 @@ $("#workExperience").append(HTMLworkLocation.replace("%data%", work.location));
 $("#workExperience").append(HTMLworkDescription.replace("%data%", work.description));
 
 $("#education").append(HTMLschoolStart);
-$("#education").append(HTMLschoolName.replace("%data%", education.name));
-$("#education").append(HTMLschoolName.replace("%data%", education.degree));
-$("#education").append(HTMLschoolName.replace("%data%", education.dates));
-$("#education").append(HTMLschoolName.replace("%data%", education.location));
-$("#education").append(HTMLschoolName.replace("%data%", education.major));
+for (var i = 0; i < educationJSON.schools.length; i++) {
+	$("#education").append(HTMLschoolName.replace("%data%", educationJSON.schools[i].name));
+	$("#education").append(HTMLschoolDegree.replace("%data%", educationJSON.schools[i].degree));
+	$("#education").append(HTMLschoolDates.replace("%data%", educationJSON.schools[i].dates));
+	$("#education").append(HTMLschoolLocation.replace("%data%", educationJSON.schools[i].location));
+	$("#education").append(HTMLschoolMajor.replace("%data%", educationJSON.schools[i].major));
+}
+$("#education").append(HTMLonlineClasses);
+for (var i = 0; i < educationJSON.onlineCourses.length; i++) {
+	$("#education").append(HTMLonlineTitle.replace("%data%", educationJSON.onlineCourses[i].title));
+	$("#education").append(HTMLonlineSchool.replace("%data%", educationJSON.onlineCourses[i].school));
+	$("#education").append(HTMLonlineDates.replace("%data%", educationJSON.onlineCourses[i].dates));
+	$("#education").append(HTMLonlineURL.replace("%data%", educationJSON.onlineCourses[i].url));
+}
+
+
